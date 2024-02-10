@@ -10,10 +10,10 @@ const Booking = () => {
   return (
     <>
       <Modal />
-      <section className="bg-gray-100" id="appoinment">
-        <div className="mx-auto max-w-screen-xl px-2 py-16 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 place-content-start gap-x-14 gap-y-8 lg:grid-cols-5">
-            <div className="rounded-sm bg-blue p-3 shadow-lg lg:col-span-3  lg:p-12">
+      <section className=" w-full ">
+        <div className="mx-auto w-full px-2  md:my-0 sm:px- lg:px-8">
+          <div className="grid grid-rows-1  place-content-start w-full items-center gap-x-14 gap-y-8 lg:grid-cols-5">
+            <div className="rounded-sm bg-blue p-4 shadow-lg lg:col-span-3   lg:p-12">
               <p className="text-white">WE ARE HERE FOR YOU</p>
               <p className="text text-3xl text-white font-medium mb-6">
                 Make An Appointment
@@ -114,11 +114,11 @@ const Booking = () => {
                 </div>
               </form>
             </div>
-            <div className="lg:col-span-2 lg:py-12">
-              <p className="max-w-xl text-lg text-blue font-bold text-[14px]">
+            <div className="lg:col-span-2 lg:py-12 flex justify-center md:items-start items-center mx-auto flex-col p-3">
+              <p className="max-w-xl text-lg flex justify-center text-blue font-bold text-[14px]">
                 LEARN ANYTHING
               </p>
-              <p className="text-4xl font-medium w-[535px] ">
+              <p className="text-4xl font-medium flex md:justify-start justify-center w-[535px] ">
                 We Offer Best Dental Services
               </p>
               <div className="mt-7  ">

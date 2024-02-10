@@ -7,12 +7,16 @@ const Doctors = () => {
     <>
       <div className="flex gap-5 flex-wrap justify-center">
         {[...Array(5)].map((_, index) => (
-          <div className="w-[300px] rounded-md border mt-10" key={index}>
+          <div
+            className="w-[300px] rounded-md border mt-10 relative"
+            key={index}
+          >
             <img
               src={img1}
               alt="Laptop"
               className="h-[200px] w-full rounded-t-md object-cover"
             />
+            <div className="rounded-full border-2 border-blue h-5 w-5 bg-[green] absolute top-0 right-0 "></div>
             <div className="p-4">
               <h1 className="inline-flex items-center text-lg font-semibold">
                 Dr:Sukraj Chaudhary &nbsp; <ArrowUpRight className="h-4 w-4" />
@@ -32,13 +36,13 @@ const Doctors = () => {
                 </span>
               </div>
               <Link to="/makeappoinments/6">
-              <button
-                type="button"
-                className="mt-4 w-full rounded-sm bg-blue px-2 py-1.5 text-sm font-semibold text-white shadow-sm  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-              >
-                Take Appoinments
-              </button>
-            </Link>
+                <button
+                  type="button"
+                  className="mt-4 w-full rounded-sm bg-blue px-2 py-1.5 text-sm font-semibold text-white shadow-sm  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                >
+                  Take Appoinments
+                </button>
+              </Link>
             </div>
           </div>
         ))}

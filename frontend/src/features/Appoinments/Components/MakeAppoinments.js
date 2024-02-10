@@ -1,5 +1,6 @@
 import React from "react";
 import img1 from "../../../Assest/sukraj.JPG";
+import { Link } from "react-router-dom";
 const MakeAppoinments = () => {
   return (
     <div>
@@ -13,13 +14,13 @@ const MakeAppoinments = () => {
                 !!Your Selected Doctor!!
               </p>
               <div className="flex items-start gap-4 p-4 sm:p-6 lg:p-8">
-                <a href="#" className="block shrink-0">
+                <Link to="#" className="block shrink-0">
                   <img
                     alt=""
                     src={img1}
                     className="size-14 rounded-lg object-cover"
                   />
-                </a>
+                </Link>
 
                 <div>
                   <h3 className="font-medium sm:text-lg">

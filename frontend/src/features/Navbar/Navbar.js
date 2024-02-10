@@ -20,7 +20,7 @@ export default function Navbar({ children }) {
   return (
     <>
       <section className="w-full relative bg-[#F8F8F8] sm:w-full">
-      <div className="mx-auto flex justify-around items-center h-[97px] p-2">
+        <div className="mx-auto flex justify-around items-center h-[97px] p-2">
           <Link to="/">
             <div className="flex flex-col justify-start text-blue font-serif font-bold">
               <div className="text-blue text-[24px]">TOOTHCARE</div>
@@ -107,30 +107,30 @@ export default function Navbar({ children }) {
           </div>
         </div>
       </section>
-       <header className="sticky top-0 z-10"> 
-      <nav className="bg-nav-bg w-full  drop-shadow-lg "  >
-        <div className="flex justify-around items-center mr-auto h-[73px]">
-          <div className="w-[255px] h-[100%] flex justify-center items-center bg-blue order-1">
-            <a href="#appoinment">
-              <p className="flex text-[#FFFFFF] font-bold text-[13px] cursor-pointer">
-                MAKE AN APPOINTMENT
-              </p>
-            </a>
-          </div>
-          <div className="flex w-[910px] justify-around cursor-pointer">
-            {navigation.map((item, index) => (
-              <a href={item.href} key={index}>
-                <div className="relative">
-                  <div className="text-text font-medium relative group uppercase">
-                    {item.name}
-                    <div className="absolute bottom-0 left-0 w-full h-0 bg-blue transition-all  group-hover:h-[2px]"></div>
-                  </div>
-                </div>
+      <header className="sticky top-0 z-10">
+        <nav className="bg-nav-bg w-full  drop-shadow-lg ">
+          <div className="flex justify-around items-center mr-auto h-[73px]">
+            <div className="w-[255px] h-[100%] flex justify-center items-center bg-blue order-1">
+              <a href="#appoinment">
+                <p className="flex text-[#FFFFFF] font-bold text-[13px] cursor-pointer">
+                  MAKE AN APPOINTMENT
+                </p>
               </a>
-            ))}
+            </div>
+            <div className="flex w-[910px] justify-around cursor-pointer">
+              {navigation.map((item, index) => (
+                <a href={item.href} key={index}>
+                  <div className="relative">
+                    <div className="text-text font-medium relative group uppercase">
+                      {item.name}
+                      <div className="absolute bottom-0 left-0 w-full h-0 bg-blue transition-all  group-hover:h-[2px]"></div>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
       </header>
       {children ? (
         children
@@ -138,19 +138,19 @@ export default function Navbar({ children }) {
         <>
           <section id="about">
             <Home></Home>
-            <div id="appoinment">
-              <Booking></Booking>
-            </div>
-            <section id="services">
-              <Services></Services>
-            </section>
-            <Features></Features>
-            <section id="doctor">
-              <Doctors></Doctors>
-            </section>
-            <section id="pricing">
-              <PricingSections></PricingSections>
-            </section>
+          </section>
+          <div id="appoinment">
+            <Booking></Booking>
+          </div>
+          <section id="services">
+            <Services></Services>
+          </section>
+          <Features></Features>
+          <section id="doctor">
+            <Doctors></Doctors>
+          </section>
+          <section id="pricing">
+            <PricingSections></PricingSections>
           </section>
         </>
       )}

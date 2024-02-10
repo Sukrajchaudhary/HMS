@@ -3,8 +3,8 @@ import img1 from "../../src/Assest/sukraj.JPG";
 const Services = () => {
   return (
     <>
-      <div className="bg-[#F0F0F0] md:w-full">
-        <div className="mx-auto max-w-screen-xl px-2 py-16 sm:px-6 lg:px-8 ">
+      <div className="bg-[#F0F0F0] w-full md:w-full">
+        <div className="mx-auto max-w-screen-xl px-2  py-16 sm:px-6 lg:px-8 ">
           <div className="flex flex-col justify-center items-center">
             <p className="text-blue font-bold text-sm">Services</p>
             <p className="font-medium text-4xl text-[#000000CC]">

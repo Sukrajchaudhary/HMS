@@ -4,11 +4,13 @@ import "react-slideshow-image/dist/styles.css";
 import img1 from "../../Assest/images.jpg";
 import img2 from "../../Assest/img.jpeg";
 import img3 from "../../Assest/img2.jpeg";
+// import "./styles.css"; // Make sure to import your CSS file
 
 const divStyle = {
   display: "flex",
   backgroundSize: "cover",
   height: "700px",
+  width: "100%"
 };
 
 const slideImages = [
@@ -28,15 +30,15 @@ const slideImages = [
 
 const Home = () => {
   return (
-    <div className="slide-container ">
-      <Slide>
+    <div className="slide-container" style={{ width: "100%" }}>
+      <Slide className="w-full">
         {slideImages.map((slideImage, index) => (
           <div key={index}>
             <div
               style={{ ...divStyle, backgroundImage: `url(${slideImage.url})` }}
             >
-              <div className="w-[700px] bg-[#B1B3B7] bg-opacity-75 h-[100%] flex flex-col gap-4 justify-center items-center ">
-                <div className="flex justify-start items-center flex-col  w-[100%]">
+              <div className="w-full md:w-[700px] bg-[#B1B3B7] bg-opacity-75 h-[100%] flex flex-col gap-4 justify-center items-center">
+                <div className="flex justify-start items-center flex-col w-[100%]">
                   <p className="text-[#FFFFFF] font-normal text-6xl">
                     Dentist Services <br /> that You Can Trust
                   </p>
@@ -46,12 +48,12 @@ const Home = () => {
                     blind texts.
                   </p>
                 </div>
-                <div className="flex flex-row gap-5 justify-center items-center ">
+                <div className="flex flex-row gap-5 justify-center items-center">
                   <button className="border-1 cursor-pointer border-transparent bg-[#00BCD4] w-60 h-12 rounded text-[#FFFFFF] font-normal text-[18px]">
                     See All Services
                   </button>
                   <button className="border-1 border-transparent cursor-pointer bg-[#FFFFFF] w-60 h-12 rounded text-blue font-normal text-[18px]">
-                    View Cources
+                    View Courses
                   </button>
                 </div>
               </div>
@@ -62,4 +64,5 @@ const Home = () => {
     </div>
   );
 };
+
 export default Home;
