@@ -6,12 +6,14 @@ import Features from "../../components/Features";
 import Doctors from "../../components/Doctors";
 import PricingSections from "../../components/PricingSections";
 import Footer from "../../components/Footer";
+import  Blog from "../../components/Blog";
 
 const navigation = [
   { name: "Home", href: "#", current: true },
   { name: "Dentist", href: "#doctor", current: false },
   { name: "About", href: "#about", current: false },
   { name: "Services", href: "#services", current: true },
+  { name: "Blog", href: "#Blog", current: false },
   { name: "Pricing", href: "#pricing", current: false },
   { name: "Contact", href: "#contact", current: false },
 ];
@@ -19,10 +21,10 @@ const navigation = [
 export default function Navbar({ children }) {
   return (
     <>
-      <section className="w-full relative bg-[#F8F8F8] sm:w-full">
-        <div className="mx-auto flex justify-around items-center h-[97px] p-2">
+      <section className=" w-screen relative bg-[#F8F8F8] max-md:hidden">
+        <div className="mx-auto flex justify-around items-center  h-[97px] ">
           <Link to="/">
-            <div className="flex flex-col justify-start text-blue font-serif font-bold">
+            <div className="flex flex-col justify-center  items-center text-blue font-serif font-bold">
               <div className="text-blue text-[24px]">TOOTHCARE</div>
               <div className="text-[12px] text-[#AAAAAA]">
                 DENTAL CLINIC SERVICES
@@ -108,16 +110,16 @@ export default function Navbar({ children }) {
         </div>
       </section>
       <header className="sticky top-0 z-10">
-        <nav className="bg-nav-bg w-full  drop-shadow-lg ">
+        <nav className="bg-nav-bg   drop-shadow-lg ">
           <div className="flex justify-around items-center mr-auto h-[73px]">
-            <div className="w-[255px] h-[100%] flex justify-center items-center bg-blue order-1">
+            <div className="px-3 h-[100%] flex justify-center items-center bg-blue order-1">
               <a href="#appoinment">
                 <p className="flex text-[#FFFFFF] font-bold text-[13px] cursor-pointer">
                   MAKE AN APPOINTMENT
                 </p>
               </a>
             </div>
-            <div className="flex w-[910px] justify-around cursor-pointer">
+            <div className="flex w-screen justify-around cursor-pointer max-md:hidden ">
               {navigation.map((item, index) => (
                 <a href={item.href} key={index}>
                   <div className="relative">
@@ -148,6 +150,9 @@ export default function Navbar({ children }) {
           <Features></Features>
           <section id="doctor">
             <Doctors></Doctors>
+          </section>
+          <section id="Blog">
+            <Blog></Blog>
           </section>
           <section id="pricing">
             <PricingSections></PricingSections>

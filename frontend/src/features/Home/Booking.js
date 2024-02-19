@@ -10,7 +10,7 @@ const Booking = () => {
   return (
     <>
       <Modal />
-      <section className=" w-full ">
+      <section >
         <div className="mx-auto w-full px-2  md:my-0 sm:px- lg:px-8">
           <div className="grid grid-rows-1  place-content-start w-full items-center gap-x-14 gap-y-8 lg:grid-cols-5">
             <div className="rounded-sm bg-blue p-4 shadow-lg lg:col-span-3   lg:p-12">

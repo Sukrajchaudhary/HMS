@@ -1,15 +1,35 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useForm} from "react-hook-form"
-// import img1 from "../../../Assest/jonny.jpg";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { LoginUserAsync, error, loginResponse } from "../authSlice";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 const Login = () => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-      } = useForm()
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const dispatch = useDispatch();
+  const navigate=useNavigate()
+  const LoginUser = useSelector(loginResponse);
+  console.log("from login",LoginUser)
+  const loginerror = useSelector(error);
+  const loginToken = localStorage.getItem("token");
+  const admin=JSON.parse(loginToken)
+  if (admin) {
+    if (admin.role === "admine") {
+      navigate("/admin/dashboard");
+    } else if (admin.role === "user") {
+      navigate("/user");
+    }
+  }
+
   return (
-    <div>
+    <>
+      {/* {admin?.role==='user' && <Navigate to="/user"></Navigate>}
+      {admin?.role==="admine" &&<Navigate to='/admin/dashboard'></Navigate>} */}
       <section className="relative flex  flex-wrap lg:h-screen lg:items-center ">
         <div className="w-full px-4 py-5 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-lg text-center">
@@ -23,7 +43,14 @@ const Login = () => {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit((data)=>console.log(data))} noValidate className="mx-auto mb-32  mt-5 max-w-md space-y-4">
+          <form
+            className="mx-auto mb-32  mt-5 max-w-md space-y-4"
+            noValidate
+            onSubmit={handleSubmit((data) => {
+              dispatch(LoginUserAsync(data));
+              reset();
+            })}
+          >
             <div>
               <label htmlFor="email" className="sr-only">
                 Email
@@ -107,11 +134,18 @@ const Login = () => {
                 )}
               </div>
             </div>
-
+            {loginerror && (
+              <p className="text-red">
+                {loginerror ? loginerror : loginerror.message}
+              </p>
+            )}
             <div className="flex items-center justify-between">
               <p className="text-sm text-gray-500">
                 No account?
-                <Link className="underline cursor-pointer text-blue" to="/Signup">
+                <Link
+                  className="underline cursor-pointer text-blue"
+                  to="/Signup"
+                >
                   Sign up
                 </Link>
               </p>
@@ -133,7 +167,7 @@ const Login = () => {
           />
         </div>
       </section>
-    </div>
+    </>
   );
 };
 

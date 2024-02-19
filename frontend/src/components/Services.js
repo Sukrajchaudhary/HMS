@@ -3,8 +3,8 @@ import img1 from "../../src/Assest/sukraj.JPG";
 const Services = () => {
   return (
     <>
-      <div className="bg-[#F0F0F0] w-full md:w-full">
-        <div className="mx-auto max-w-screen-xl px-2  py-16 sm:px-6 lg:px-8 ">
+      <div className="bg-[#F0F0F0] w-full ">
+        <div className="mx-auto  flex  justify-center items-center flex-col max-w-screen-xl px-2  py-16 sm:px-6 lg:px-8 ">
           <div className="flex flex-col justify-center items-center">
             <p className="text-blue font-bold text-sm">Services</p>
             <p className="font-medium text-4xl text-[#000000CC]">
@@ -16,7 +16,7 @@ const Services = () => {
             {[...Array(8)].map((_, index) => (
               <div
                 key={index}
-                className="h-96 w-72 group bg-white flex flex-col justify-center items-center gap-5 p-10 hover:bg-blue transition-all hover:text-white"
+                className="md:h-96 md:w-72 w-auto group bg-white flex flex-col justify-center items-center gap-5 p-10 hover:bg-blue transition-all hover:text-white"
               >
                 <div className="h-28 w-28 rounded-full border-2 flex justify-center items-center bg-blue overflow-hidden">
                   <img src={img1} className="h-28 w-28 object-cover" alt="" />

@@ -1,6 +1,30 @@
-// A mock function to mimic making an async request for data
-export function fetchCount(amount = 1) {
-  return new Promise((resolve) =>
-    setTimeout(() => resolve({ data: amount }), 500)
-  );
+
+export function getallDoctors() {
+  return new Promise(async (resolve) => {
+    const response = await fetch(`http://localhost:8080/api/doctor`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      resolve({data});
+    }
+  });
+}
+// getDoctors byID
+export function getDoctorsById(id) {
+  return new Promise(async (resolve) => {
+    const response = await fetch(`http://localhost:8080/api/doctor/${id}`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      resolve({data});
+    }
+  });
 }
