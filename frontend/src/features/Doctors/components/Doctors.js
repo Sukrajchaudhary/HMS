@@ -2,10 +2,14 @@ import React, { useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
 import img1 from "../../../Assest/sukraj.JPG";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import {  AllDoctors } from "../doctorSlice";
+import { useSelector ,useDispatch} from "react-redux";
+import {  AllDoctors ,getallDoctorsAsync} from "../doctorSlice";
 const Doctors = () => {
   const Doctor = useSelector(AllDoctors);
+  const dispatch=useDispatch();
+  useEffect(()=>{
+ dispatch(getallDoctorsAsync())
+  },[])
   return (
     <>
       <div className="flex gap-5 flex-wrap justify-center">

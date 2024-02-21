@@ -46,9 +46,11 @@ exports.UsersAppoinments = async (req, res) => {
 };
 exports.UpdateAppoinmnts = async (req, res) => {
   try {
-    const { appoinmentID } = req.params;
+    const { id } = req.params;
+    console.log("params id",id)
+    console.log(req.body)
     const appoiments = await Appointment.findByIdAndUpdate(
-      { _id: appoinmentID },
+      { _id: id },
       req.body,
       {
         new: true,

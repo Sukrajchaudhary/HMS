@@ -6,8 +6,8 @@ export function CreateAppoinments(appoinmentInfo) {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          "token":localStorage.getItem('token')
         },
+        credentials:'include',
         body: JSON.stringify(appoinmentInfo),
       }
     );
@@ -26,9 +26,9 @@ export function getUserAppointments() {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            "token":localStorage.getItem('token')
+           
           },
-
+          credentials:'include',
         }
       );
       if (response.ok) {

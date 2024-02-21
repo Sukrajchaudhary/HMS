@@ -3,7 +3,8 @@ import {
   GetAllusersAppoinments,
   CreateBlog,
   CreateDoctorAccount,
-  GetsAllBlogs
+  GetsAllBlogs,
+  UpdateUserAppoinments
 } from "./adminAPI";
 
 const initialState = {
@@ -39,6 +40,13 @@ export const GetsAllBlogsAsync = createAsyncThunk(
   "admin/GetsAllBlogs",
   async () => {
     const response = await GetsAllBlogs();
+    return response.data;
+  }
+);
+export const UpdateUserAppoinmentsAsync = createAsyncThunk(
+  "admin/UpdateUserAppoinments",
+  async (update) => {
+    const response = await UpdateUserAppoinments(update);
     return response.data;
   }
 );
@@ -79,6 +87,14 @@ export const admineSlice = createSlice({
       .addCase(GetsAllBlogsAsync.fulfilled, (state, action) => {
         state.status = "idle";
         state.blog = action.payload;
+      })
+      .addCase(UpdateUserAppoinmentsAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(UpdateUserAppoinmentsAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        const index=state.allAppoinments.findIndex((app)=>app._d===action.payload._id)
+        state.allAppoinments[index] = action.payload;
       });
   },
 });

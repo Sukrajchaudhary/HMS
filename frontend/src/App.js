@@ -14,17 +14,12 @@ import AdminDashboardPages from "./Pages/AdminDashboardPages";
 import ViewUsersAppoinmentPages from "./Pages/ViewUsersAppoinmentPages";
 import AddBlogPages from "./Pages/AddBlogPages";
 import DoctorAccountPages from "./Pages/DoctorAccountPages";
-import { getallDoctorsAsync } from "../src/features/Doctors/doctorSlice";
-import { GetsAllBlogsAsync } from "../src/features/Userdashboard copy/adminSlice";
-import { useDispatch } from "react-redux";
 import NewLogin from "./features/Auth/components/NewLogin";
-import ProtectedAdmin from "./features/Auth/components/ProtectedAdmin";
+// import Protectes from "./features/Auth/components/Protectes";
+
 function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getallDoctorsAsync());
-    dispatch(GetsAllBlogsAsync());
-  }, []);
+  
+
   const router = createBrowserRouter([
     {
       path: "/signup",
@@ -65,40 +60,40 @@ function App() {
       path: "/admin/dashboard",
       exact: true,
       element: (
-        <ProtectedAdmin>
+        <Protectes>
           {" "}
           <AdminDashboardPages></AdminDashboardPages>
-        </ProtectedAdmin>
+        </Protectes>
       ),
     },
     {
       path: "/admin/dashboard/alluserappoinment",
       exact: true,
       element: (
-        <ProtectedAdmin>
+        <Protectes>
           {" "}
           <ViewUsersAppoinmentPages></ViewUsersAppoinmentPages>
-        </ProtectedAdmin>
+        </Protectes>
       ),
     },
     {
       path: "/admin/dashboard/addblog",
       exact: true,
       element: (
-        <ProtectedAdmin>
+        <Protectes>
           {" "}
           <AddBlogPages></AddBlogPages>
-        </ProtectedAdmin>
+        </Protectes>
       ),
     },
     {
       path: "/admin/dashboard/doctor/create/account",
       exact: true,
       element: (
-        <ProtectedAdmin>
+        <Protectes>
           {" "}
           <DoctorAccountPages></DoctorAccountPages>
-        </ProtectedAdmin>
+        </Protectes>
       ),
     },
     {
@@ -115,21 +110,17 @@ function App() {
       exact: true,
       element: (
         <Protectes>
-          <ProtectedAdmin>
+          <Protectes>
             {" "}
             <MakeAppoinmentsPages></MakeAppoinmentsPages>
-          </ProtectedAdmin>
+          </Protectes>
         </Protectes>
       ),
     },
     {
       path: "/doctors",
       exact: true,
-      element: (
-        <Protectes>
-            <DoctorsPages></DoctorsPages>
-        </Protectes>
-      ),
+      element: <DoctorsPages></DoctorsPages>,
     },
     {
       path: "*",

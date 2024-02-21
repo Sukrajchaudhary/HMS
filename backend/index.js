@@ -10,12 +10,11 @@ const doctorRouter = require("./Routes/Doctors.routes");
 const appoinmentRouter = require("./Routes/Appoinments.routes");
 const adminRouter=require('./Routes/Admin.routes')
 const bodyParser = require("body-parser");
-const passport = require("passport");
 const session = require("express-session");
-const {
-  PassportInitialization,
-  LocalJwtStrategy,
-} = require("./Middleware/Passport.js"); // Corrected import
+
+
+
+// Corrected import
 const { isAuth } = require("./common/Common.js");
 
 // Middleware setup
@@ -30,8 +29,6 @@ app.use(express.json());
 app.use(bodyParser.json({ limit: "200mb" }));
 app.use(bodyParser.urlencoded({ limit: "200mb", extended: true }));
 app.use(cookieParser());
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -39,24 +36,16 @@ app.use(
     exposedHeaders:['X-Total-Count']
   })
 );
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
+
 
 app.use("/api", userauthRouter.router);
-app.use("/api", doctorRouter.router);
-app.use("/api",adminRouter.router)
-app.use("/api", isAuth(), appoinmentRouter.router);
-app.use("/api", isAuth(), userRouter.router);
-// Passport initialization
-PassportInitialization(passport);
-// JWT Strategy setup
-LocalJwtStrategy(passport);
-// Routes setup
+app.use("/api",isAuth, doctorRouter.router);
+app.use("/api",isAuth,adminRouter.router)
+app.use("/api",isAuth, appoinmentRouter.router);
+app.use("/api",isAuth, userRouter.router);
 
+
+  
 
 // Connect to the database and start the server
 ConnectToDb()

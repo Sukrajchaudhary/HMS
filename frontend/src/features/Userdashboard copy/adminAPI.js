@@ -12,6 +12,7 @@ export function GetAllusersAppoinments(pagination) {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials:'include'
       }
     );
     if (response.ok) {
@@ -29,6 +30,10 @@ export function CreateBlog(blogInfo) {
       "http://localhost:8080/api/admin/blog/create",
       {
         method: "POST",
+        headers:{
+          'content-type':'application/json'
+        },
+        credentials:'include',
         body: blogInfo,
       }
     );
@@ -45,7 +50,8 @@ export function GetsAllBlogs(){
       method:'GET',
       headers:{
         'Content-Type':'application/json'
-      }
+      },
+      credentials:'include'
     })
     if(response.ok){
       const data= await response.json();
@@ -68,4 +74,21 @@ export function CreateDoctorAccount(doctorInfo) {
       resolve({ data, message: "Account Create SuccessFully !" });
     }
   });
+}
+// Update Users Appoinments;
+export function UpdateUserAppoinments(update){
+  return new Promise(async(resolve)=>{
+   const response= await fetch('http://localhost:8080/api/appoinment/update/'+update._id,{
+    method:"PATCH",
+    headers:{
+      'Content-Type':'application/json'
+    },
+    credentials:'include',
+    body:JSON.stringify(update)
+   })
+   if(response.ok){
+    const data =response.json();
+    resolve({data})
+   }
+  })
 }

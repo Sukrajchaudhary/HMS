@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const { User } = require("../Models/Users.model");
 const cloudinary = require("cloudinary").v2;
 
@@ -48,12 +49,20 @@ exports.UpdateProfile = async (req, res) => {
 
 // 
 exports.getUserInfo = async (req, res) => {
-  console.log("users",req.user)
   try {
-    const {id}=req.user;
-    const user = await User.findById({ _id: id });
-    return res.status(200).json(user)
+    if (!req.user) {
+      return res.status(400).json({ error: 'User ID not provided in request' });
+    }
+
+    const { id } = req.user;
+    console.log("ide from get user",id)
+    const user = await User.findById({_id:id});
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    return res.status(200).json(user);
   } catch (error) {
-    return res.status(500).json(error.message)
+    console.error('Error in getUserInfo:', error); // Log the error for debugging
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };

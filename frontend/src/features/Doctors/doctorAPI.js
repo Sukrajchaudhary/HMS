@@ -6,6 +6,7 @@ export function getallDoctors() {
       headers: {
         "content-type": "application/json",
       },
+      credentials:'include',
     });
     if (response.ok) {
       const data = await response.json();
@@ -21,6 +22,7 @@ export function getDoctorsById(id) {
       headers: {
         "content-type": "application/json",
       },
+      credentials:'include',
     });
     if (response.ok) {
       const data = await response.json();

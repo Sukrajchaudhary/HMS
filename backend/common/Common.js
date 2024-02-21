@@ -1,7 +1,19 @@
-const passport = require("passport");
-exports.isAuth = (req, res, done) => {
-  return passport.authenticate("jwt");
+const jwt = require("jsonwebtoken"); // Import jsonwebtoken package
+
+exports.isAuth = (req, res, next) => {
+  const token = req.cookies["jwt"];
+  if (!token) {
+    res.sendStatus(401).send({ error: "Please authenticate using a valid token" });
+  }
+  try {
+    const data = jwt.verify(token, process.env.SECRETE);
+    req.user = data;
+    next();
+  } catch (error) {
+    res.sendStatus(401).send({ error: "Please authenticate using a valid Token" });
+  }
 };
+
 exports.Sanetizer = (user) => {
   return {
     id: user._id,
@@ -9,17 +21,4 @@ exports.Sanetizer = (user) => {
     token: user.token,
     role: user.role,
   };
-};
-
-// extracting cookies
-exports.ExtractCookies = (req) => {
-  let token = null;
-  if (req && req.headers) {
-    const Userinfo = req.headers["token"];
-    const User = JSON.parse(Userinfo);
-    token = User.token;
-
-    console.log("token from any where", token);
-  }
-  return token;
 };

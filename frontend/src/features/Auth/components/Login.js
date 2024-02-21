@@ -12,24 +12,23 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
-  const navigate=useNavigate()
   const LoginUser = useSelector(loginResponse);
-  console.log("from login",LoginUser)
+  console.log("from login", LoginUser);
   const loginerror = useSelector(error);
   const loginToken = localStorage.getItem("token");
-  const admin=JSON.parse(loginToken)
-  if (admin) {
-    if (admin.role === "admine") {
-      navigate("/admin/dashboard");
-    } else if (admin.role === "user") {
-      navigate("/user");
-    }
-  }
+  const admin = JSON.parse(loginToken);
+  // if (admin) {
+  //   if (admin.role === "admine") {
+  //     navigate("/admin/dashboard");
+  //   } else if (admin.role === "user") {
+  //     navigate("/user");
+  //   }
+  // }
 
   return (
     <>
-      {/* {admin?.role==='user' && <Navigate to="/user"></Navigate>}
-      {admin?.role==="admine" &&<Navigate to='/admin/dashboard'></Navigate>} */}
+      {LoginUser && <Navigate to="/user"></Navigate>}
+      {/*  {admin?.role==="admine" &&<Navigate to='/admin/dashboard'></Navigate>} */}
       <section className="relative flex  flex-wrap lg:h-screen lg:items-center ">
         <div className="w-full px-4 py-5 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-lg text-center">
@@ -136,9 +135,12 @@ const Login = () => {
             </div>
             {loginerror && (
               <p className="text-red">
-                {loginerror ? loginerror : loginerror.message}
+                {typeof loginerror === "object"
+                  ? loginerror.message
+                  : loginerror}
               </p>
             )}
+
             <div className="flex items-center justify-between">
               <p className="text-sm text-gray-500">
                 No account?

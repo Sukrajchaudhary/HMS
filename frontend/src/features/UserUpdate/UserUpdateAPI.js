@@ -3,9 +3,7 @@ export function UpdateProfile(formData) {
     try {
       const response = await fetch(`http://localhost:8080/api/updateprofile`, {
         method: "POST",
-        headers: {
-          token: localStorage.getItem("token"),
-        },
+        credentials: "include",
         body: formData,
       });
 

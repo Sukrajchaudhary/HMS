@@ -7,6 +7,7 @@ export function CreateUsers(userdata) {
       headers: {
         "content-type": "application/json",
       },
+      credentials:'include'
     });
     if (response.ok) {
       const data = await response.json();
@@ -28,6 +29,7 @@ export function LoginUsers(userinfo) {
         headers: {
           "content-type": "application/json",
         },
+        credentials:'include',
         body: JSON.stringify(userinfo),
       });
       if (response.ok) {
@@ -36,10 +38,10 @@ export function LoginUsers(userinfo) {
         resolve({data});
       } else {
         const error = await response.text();
-        reject(error);
+        reject({error});
       }
     } catch (error) {
-      reject({ error });
+      reject( {error} );
     }
   });
 }
@@ -50,12 +52,12 @@ export function getUsers() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "token":localStorage.getItem('token')
       },
+      credentials:'include',
     });
     if (response.ok) {
       const data = await response.json();
-      resolve({ data });
+      resolve({data});
     }
   });
 }

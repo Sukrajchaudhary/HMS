@@ -9,7 +9,7 @@ const router = express.Router();
 router
   .post("/appoinment/create", CreateAppoinments)
   .get("/appoinment/getusersappoinment", UsersAppoinments)
-  .patch("/appoinment/update/:appoinmentID", UpdateAppoinmnts)
+  .patch("/appoinment/update/:id", UpdateAppoinmnts)
   .delete("/appoinment/delete/:id",DeletesAppoinments)
   ;
 

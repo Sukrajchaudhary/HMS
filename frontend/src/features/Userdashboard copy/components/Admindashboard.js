@@ -8,12 +8,11 @@ import {userinfo,getUsersAsync} from '../../Auth/authSlice'
 const Admindashboard = ({ children }) => {
   const UserDetails=useSelector(userinfo);
   const dispatch=useDispatch()
-  console.log(UserDetails)
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  useEffect(()=>{
+useEffect(()=>{
 dispatch(getUsersAsync())
-  },[])
+},[])
   return (
     <>
       <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -59,20 +58,6 @@ dispatch(getUsersAsync())
                 ${open ? "text-white" : "text-blue"}
                 group inline-flex items-center rounded-md  px-3 py-2 text-base font-medium  focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
                         >
-                          {/* <button
-                            type="button"
-                            className="flex text-sm bg-gray-800 border-2 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                            aria-expanded="false"
-                            data-dropdown-toggle="dropdown-user"
-                          >
-                            <span className="sr-only">Open user menu</span>
-
-                            <img
-                              className="w-12 h-12 rounded-full object-cover justify-center"
-                              src={null}
-                              alt="user photo"
-                            />
-                          </button> */}
                           <button
                               type="button"
                               className="flex text-sm bg-gray-800 border-2 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"

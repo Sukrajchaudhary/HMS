@@ -1,6 +1,6 @@
 const { User } = require("../Models/Users.model");
 const jwt = require("jsonwebtoken");
-const { Sanetizer } = require("../common/Common");
+const { Sanetizer} = require("../common/Common");
 exports.CreateUsers = async (req, res) => {
   try {
     let existingUser = await User.findOne({ email: req.body.email });
@@ -29,15 +29,37 @@ exports.CreateUsers = async (req, res) => {
 };
 
 exports.LoginUsers = async (req, res) => {
-  console.log("req object ssjkgvbkhkkh",req.user.id)
-  return res
-    .cookie("jwt", req.user.token, {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res
+        .status(400)
+        .json({ message: "Username and password is Needed." });
+    }
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res
+        .status(400)
+        .json({ message: "User with this email does not exist!" });
+    }
+    const isValidPassword = await user.comparePassword(password);
+    if (!isValidPassword) {
+      return res.status(400).json({ message: "Invalid Credentials!!" });
+    }
+    const token = jwt.sign({ id: user._id }, process.env.SECRETE, {
       expiresIn: "2h",
-      SameSite: "none",
-      httpOnly: true,
-    })
-    .status(200)
-    .send(req.user);
+    });
+     res
+      .cookie("jwt", token, {
+        expiresIn: "2h",
+        httpOnly: true,
+        sameSite: "none",
+      })
+      .status(200)
+      .json({ token });
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
 };
 
 exports.CheckUser = async (req, res) => {

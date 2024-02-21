@@ -26,7 +26,7 @@ const appointmentSchema = new Schema(
     },
     status: {
       type: String,
-      default: "Pending",
+      default: "pending",
     },
   },
   { timestamps: true }

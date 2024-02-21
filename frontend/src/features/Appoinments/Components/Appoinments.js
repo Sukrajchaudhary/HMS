@@ -8,6 +8,21 @@ const Appoinments = () => {
   useEffect(() => {
     dispatch(getUserAppointmentsAsync());
   }, []);
+  const handleChange = (status) => {
+    switch (status) {
+      case "cancled":
+        return "text-white bg-red";
+      case "dispatch":
+        return "bg-[#0866FF] text-white";
+      case "pending":
+        return "bg-[yellow] text-black";
+      case "approved":
+        return "bg-[green] text-white";
+      default:
+        return "";
+    }
+  };
+
   return (
     <>
       <section className="mx-auto w-full max-w-7xl  py-4">
@@ -89,11 +104,9 @@ const Appoinments = () => {
                             </td>
                             <td className="whitespace-nowrap px-4 py-4">
                               <span
-                                className={`inline-flex rounded-full ${
-                                  appoinment.status === "Pending"
-                                    ? "bg-[yellow] text-[black] text-md font-bold "
-                                    : "bg-[green] text-white text-md font-bold "
-                                }  px-2 text-xs font-semibold `}
+                                className={`inline-flex rounded-full ${handleChange(
+                                  appoinment.status
+                                )}  px-2 text-xs font-semibold `}
                               >
                                 {appoinment?.status}
                               </span>

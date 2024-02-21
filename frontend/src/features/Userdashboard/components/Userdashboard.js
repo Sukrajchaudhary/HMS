@@ -12,12 +12,13 @@ const Userdashboard = ({ children }) => {
   const location = useLocation();
   const pathName = location.pathname; 
   const userDetail = useSelector(userinfo);
+  console.log(userDetail)
   const loginToken = localStorage.getItem("token");
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUsersAsync());
-  }, [loginToken]);
-
+  }, []);
+ 
   return (
     <>
       {!loginToken && <Navigate to="/" replace={true}></Navigate>}
