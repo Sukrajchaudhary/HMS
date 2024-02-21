@@ -7,7 +7,7 @@ import Doctors from "../../components/Doctors";
 import PricingSections from "../../components/PricingSections";
 import Footer from "../../components/Footer";
 import  Blog from "../../components/Blog";
-
+import Forget from "../Auth/components/Forget";
 const navigation = [
   { name: "Home", href: "#", current: true },
   { name: "Dentist", href: "#doctor", current: false },

@@ -45,7 +45,7 @@ export function LoginUsers(userinfo) {
     }
   });
 }
-
+// get users
 export function getUsers() {
   return new Promise(async (resolve, reject) => {
     const response = await fetch("http://localhost:8080/api/user/profile", {
@@ -60,4 +60,29 @@ export function getUsers() {
       resolve({data});
     }
   });
+}
+// Request for password-reset-link
+
+export function ResetPassword(email){
+  return new Promise(async(resolve,reject)=>{
+    try {
+      const response= await fetch("http://localhost:8080/api/reset-password-request",{
+        method:"POST",
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify(email)
+      })
+      if(response.ok){
+        const data= await response.json();
+        resolve(data)
+      }
+      else{
+        const error= await response.json();
+        reject(error)
+      }
+    } catch (error) {
+      reject(error.message)
+    }
+  })
 }

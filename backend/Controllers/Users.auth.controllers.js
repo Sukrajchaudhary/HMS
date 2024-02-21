@@ -1,6 +1,6 @@
 const { User } = require("../Models/Users.model");
 const jwt = require("jsonwebtoken");
-const { Sanetizer} = require("../common/Common");
+const { Sanetizer, MailSend } = require("../common/Common");
 exports.CreateUsers = async (req, res) => {
   try {
     let existingUser = await User.findOne({ email: req.body.email });
@@ -16,12 +16,14 @@ exports.CreateUsers = async (req, res) => {
     });
     newUser.token = token;
     await newUser.save();
-    res.cookie("jwt", token, {
-      expiresIn: "2h",
-      httpOnly: true,
-      sameSite: "none",
-    });
-    return res.status(201).json(Sanetizer(newUser));
+    return res
+      .cookie("jwt", token, {
+        expiresIn: "2h",
+        httpOnly: true,
+        sameSite: "none",
+      })
+      .status(201)
+      .json(Sanetizer(newUser));
   } catch (error) {
     console.error("Error creating user:", error);
     return res.status(500).json({ error: "Failed to create user." });
@@ -49,7 +51,7 @@ exports.LoginUsers = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.SECRETE, {
       expiresIn: "2h",
     });
-     res
+    return res
       .cookie("jwt", token, {
         expiresIn: "2h",
         httpOnly: true,
@@ -62,6 +64,51 @@ exports.LoginUsers = async (req, res) => {
   }
 };
 
-exports.CheckUser = async (req, res) => {
-  return res.send({ message: true, user: req.user });
+// Passport-ResetRequest
+exports.PasswordResetRequest = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+    if (user) {
+      const token = jwt.sign({ id: user._id }, process.env.SECRETE, {
+        expiresIn: "2h",
+      });
+      user.resetPassword = token;
+      await user.save();
+      const link =
+        "http://localhost:3000/api/reset-password?token=" +
+        token +
+        "&email=" +
+        email;
+      const subject = "Reset Password";
+      const html = `<p>Click <a href="${link}">here</a> to reset Your password</p>`;
+      const response = await MailSend({ to: email, html, subject });
+      return res.status(200).json(response);
+    }
+    return res.status(400).json({ message: "Invalid email" });
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
+// set New Password
+exports.setPassword = async (req, res) => {
+  console.log(req.body)
+  try {
+    const { resetToken, email, newPassword } = req.body;
+    const user = await User.findOne({ email: email, resetPassword: resetToken });
+    if (user) {
+      user.password = newPassword;
+      await user.save();
+      if (email) {
+        const subject = " Password SuccessFully reset ";
+        const html = `<p>SuccessFully reset Password</p>`;
+        const response = await MailSend({ to: email, subject, html });
+        return res.json(response);
+      }
+    }
+    return res.status(400).json({ message: "invalid Credentials" });
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
 };

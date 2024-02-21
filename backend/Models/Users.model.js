@@ -36,6 +36,10 @@ const userSchema = new Schema(
       type: String,
       default: "user",
     },
+    resetPassword:{
+      type: String,
+      default: "",
+    }
   },
   { timestamps: true }
 );

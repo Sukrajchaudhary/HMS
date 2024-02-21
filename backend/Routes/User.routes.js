@@ -4,7 +4,6 @@ const {
   UpdateProfile,
   getUserInfo,
 } = require("../Controllers/Users.controllers");
-const { isAuth } = require("../common/Common");
 const router = express.Router();
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage, fieldname: "myimage" });

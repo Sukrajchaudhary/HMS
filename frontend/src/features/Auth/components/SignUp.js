@@ -125,10 +125,12 @@ const SignUp = () => {
                     <p className="text-red">{errors.password.message}</p>
                   )}
                 </div>
-                <div>
+                <div className="relative">
                   <p className="mt-1 text-pretty text-sm text-gray-700">
                     Select Gender:
-                  </p>
+                  </p> 
+               <Link to='/Forget'>
+               <p className="absolute right-0 top-0 text-blue  font-bold cursor-pointer">Forget Password ?</p></Link>
                   <select
                     className="w-full rounded-lg border-gray-200 p-3 text-sm"
                     {...register("gender", {

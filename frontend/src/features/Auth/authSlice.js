@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { CreateUsers, LoginUsers, getUsers } from "./authAPI";
+import { CreateUsers, LoginUsers, getUsers, ResetPassword } from "./authAPI";
 
 const initialState = {
   error: null,
   loginInfo: null,
   status: "idle",
-  userDetail:null
+  userDetail: null,
+  sentmail: false,
 };
 
 export const createUserAsync = createAsyncThunk(
@@ -24,6 +25,17 @@ export const LoginUserAsync = createAsyncThunk(
   async (userdata, { rejectWithValue }) => {
     try {
       const response = await LoginUsers(userdata);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+export const ResetPasswordAsync = createAsyncThunk(
+  "auth/ResetPassword",
+  async (email, { rejectWithValue }) => {
+    try {
+      const response = await ResetPassword(email);
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -62,6 +74,17 @@ export const authSlice = createSlice({
         state.status = "idle";
         state.error = action.payload;
       })
+      .addCase(ResetPasswordAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(ResetPasswordAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.sentmail = true;
+      })
+      .addCase(ResetPasswordAsync.rejected, (state, action) => {
+        state.status = "idle";
+        state.error = action.payload;
+      })
       .addCase(LoginUserAsync.pending, (state) => {
         state.status = "loading";
       })
@@ -79,14 +102,14 @@ export const authSlice = createSlice({
       .addCase(getUsersAsync.fulfilled, (state, action) => {
         state.status = "idle";
         state.userDetail = action.payload;
-      })
-     
+      });
   },
 });
 
 export const {} = authSlice.actions;
 export const loginResponse = (state) => state.auth.loginInfo;
 export const error = (state) => state.auth.error;
-export const userinfo=(state)=>state.auth.userDetail
+export const userinfo = (state) => state.auth.userDetail;
+export const Mail=(state)=>state.auth.sentmail
 
 export default authSlice.reducer;

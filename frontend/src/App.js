@@ -16,6 +16,7 @@ import AddBlogPages from "./Pages/AddBlogPages";
 import DoctorAccountPages from "./Pages/DoctorAccountPages";
 import NewLogin from "./features/Auth/components/NewLogin";
 // import Protectes from "./features/Auth/components/Protectes";
+import ForgetPasswordPages from "./Pages/ForgetPasswordPages";
 
 function App() {
   
@@ -44,6 +45,15 @@ function App() {
         <Protectes>
           <UserdashboardPages></UserdashboardPages>
         </Protectes>
+      ),
+    },
+    {
+      path: "/Forget",
+      exact: true,
+      element: (
+        
+          <ForgetPasswordPages></ForgetPasswordPages>
+      
       ),
     },
     {

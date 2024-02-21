@@ -2,14 +2,16 @@ const express = require("express");
 const {
   CreateUsers,
   LoginUsers,
-  CheckUser,
+  PasswordResetRequest,
+  setPassword
 } = require("../Controllers/Users.auth.controllers");
 
 const router = express.Router();
 router
   .post("/register", CreateUsers)
   .post("/Login", LoginUsers)
-  .get("/checkuser", CheckUser)
+  .post("/reset-password-request", PasswordResetRequest)
+  .post("/reset-password", setPassword)
  
  
 
