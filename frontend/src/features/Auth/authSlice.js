@@ -1,5 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { CreateUsers, LoginUsers, getUsers, ResetPassword } from "./authAPI";
+import {
+  CreateUsers,
+  LoginUsers,
+  getUsers,
+  ResetPassword,
+  ResetNewPassword,
+} from "./authAPI";
 
 const initialState = {
   error: null,
@@ -25,6 +31,17 @@ export const LoginUserAsync = createAsyncThunk(
   async (userdata, { rejectWithValue }) => {
     try {
       const response = await LoginUsers(userdata);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+export const ResetNewPasswordAsync = createAsyncThunk(
+  "auth/ResetNewPassword",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await ResetNewPassword(data);
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -102,6 +119,13 @@ export const authSlice = createSlice({
       .addCase(getUsersAsync.fulfilled, (state, action) => {
         state.status = "idle";
         state.userDetail = action.payload;
+      })
+      .addCase(ResetNewPasswordAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(ResetNewPasswordAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.sentmail = true;
       });
   },
 });
@@ -110,6 +134,6 @@ export const {} = authSlice.actions;
 export const loginResponse = (state) => state.auth.loginInfo;
 export const error = (state) => state.auth.error;
 export const userinfo = (state) => state.auth.userDetail;
-export const Mail=(state)=>state.auth.sentmail
+export const Mail = (state) => state.auth.sentmail;
 
 export default authSlice.reducer;

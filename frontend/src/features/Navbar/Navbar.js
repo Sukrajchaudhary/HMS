@@ -6,8 +6,10 @@ import Features from "../../components/Features";
 import Doctors from "../../components/Doctors";
 import PricingSections from "../../components/PricingSections";
 import Footer from "../../components/Footer";
-import  Blog from "../../components/Blog";
-import Forget from "../Auth/components/Forget";
+import Blog from "../../components/Blog";
+import { Disclosure } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+
 const navigation = [
   { name: "Home", href: "#", current: true },
   { name: "Dentist", href: "#doctor", current: false },
@@ -21,7 +23,7 @@ const navigation = [
 export default function Navbar({ children }) {
   return (
     <>
-      <section className=" w-screen relative bg-[#F8F8F8] max-md:hidden">
+      <section className=" w-screen relative bg-[#F8F8F8] ">
         <div className="mx-auto flex justify-around items-center  h-[97px] ">
           <Link to="/">
             <div className="flex flex-col justify-center  items-center text-blue font-serif font-bold">
@@ -109,31 +111,64 @@ export default function Navbar({ children }) {
           </div>
         </div>
       </section>
-      <header className="sticky top-0 z-10">
-        <nav className="bg-nav-bg   drop-shadow-lg ">
-          <div className="flex justify-around items-center mr-auto h-[73px]">
-            <div className="px-3 h-[100%] flex justify-center items-center bg-blue order-1">
-              <a href="#appoinment">
-                <p className="flex text-[#FFFFFF] font-bold text-[13px] cursor-pointer">
-                  MAKE AN APPOINTMENT
-                </p>
-              </a>
-            </div>
-            <div className="flex w-screen justify-around cursor-pointer max-md:hidden ">
-              {navigation.map((item, index) => (
-                <a href={item.href} key={index}>
-                  <div className="relative">
-                    <div className="text-text font-medium relative group uppercase">
-                      {item.name}
-                      <div className="absolute bottom-0 left-0 w-full h-0 bg-blue transition-all  group-hover:h-[2px]"></div>
+      <Disclosure
+        as="nav"
+        className="bg-[#5E16EB] shadow-md sticky top-0 z-50 "
+      >
+        {({ open }) => (
+          <>
+            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+              <div className="relative flex h-16 items-center justify-between">
+                <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                  {/* Mobile menu button*/}
+                  <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                    <span className="absolute -inset-0.5" />
+                    <span className="sr-only">Open main menu</span>
+                    {open ? (
+                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                    ) : (
+                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                    )}
+                  </Disclosure.Button>
+                </div>
+                <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                  <div className="flex flex-shrink-0 items-center">
+                    <img
+                      className="h-8 w-auto"
+                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                      alt="Your Company"
+                    />
+                  </div>
+                  <div className="hidden sm:ml-6 sm:block">
+                    <div className="flex space-x-4">
+                      {navigation.map((item) => (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          className={`bg-gray-900 text-white text-gray-300 rounded-lg px-3 py-2 text-md font-medium"
+                          `}
+                        >
+                          {item.name}
+                        </a>
+                      ))}
                     </div>
                   </div>
-                </a>
-              ))}
+                </div>
+                <div className="absolute inset-y-0 right-2 flex items-center  sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                  <Link to="/Signup">
+                    <button className="group inline-block rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-1  focus:outline-none  active:text-opacity-75">
+                      <span className="block rounded-full bg-blue text-white px-8 py-3 text-md font-medium group-hover:bg-transparent">
+                        Signup
+                      </span>
+                    </button>
+                  </Link>
+                </div>
+              </div>
             </div>
-          </div>
-        </nav>
-      </header>
+          </>
+        )}
+      </Disclosure>
+
       {children ? (
         children
       ) : (
@@ -141,9 +176,6 @@ export default function Navbar({ children }) {
           <section id="about">
             <Home></Home>
           </section>
-          <div id="appoinment">
-            <Booking></Booking>
-          </div>
           <section id="services">
             <Services></Services>
           </section>

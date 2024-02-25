@@ -1,221 +1,204 @@
 import React from "react";
-import Modal from "../../Common/Modal";
-import { useModal } from "../../Common/ModalContext";
 const Booking = () => {
-  const { setOpen } = useModal();
-  const handleClick = (e) => {
-    e.preventDefault();
-    setOpen(true);
-  };
   return (
-    <>
-      <Modal />
-      <section >
-        <div className="mx-auto w-full px-2  md:my-0 sm:px- lg:px-8">
-          <div className="grid grid-rows-1  place-content-start w-full items-center gap-x-14 gap-y-8 lg:grid-cols-5">
-            <div className="rounded-sm bg-blue p-4 shadow-lg lg:col-span-3   lg:p-12">
-              <p className="text-white">WE ARE HERE FOR YOU</p>
-              <p className="text text-3xl text-white font-medium mb-6">
-                Make An Appointment
-              </p>
-              <form action="" className="space-y-8 mt-20">
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div>
-                    <label className="sr-only" htmlFor="name">
-                      Full Name
-                    </label>
-                    <input
-                      className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                      placeholder="Enter Your Full Name"
-                      type="text"
-                      id="name"
-                    />
-                  </div>
-                  <div>
-                    <label className="sr-only" htmlFor="phone">
-                      Email
-                    </label>
-                    <input
-                      className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                      placeholder="Enter your Email Address"
-                      type="email"
-                    />
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div>
-                    <label className="sr-only" htmlFor="email">
-                      Phone Number
-                    </label>
-                    <input
-                      className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                      placeholder=" Phone Number"
-                      type="text"
-                      id="phone"
-                    />
-                  </div>
-                  <div>
-                    <label className="sr-only" htmlFor="phone">
-                      APPOINTMENT DATE
-                    </label>
-                    <input
-                      className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                      placeholder="APPOINTMENT DATE"
-                      type="date"
-                      id="date"
-                    />
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div>
-                    <label className="sr-only" htmlFor="email">
-                      APPOINTMENT TIME
-                    </label>
-                    <input
-                      className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                      placeholder="APPOINTMENT TIME"
-                      type="time"
-                      id="email"
-                    />
-                  </div>
-                  <div>
-                    <label className="sr-only" htmlFor="phone">
-                      SELECT A DOCTOR
-                    </label>
-                    <input
-                      className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                      placeholder="SELECT A DOCTOR"
-                      type="text"
-                      id="DOCTOR"
-                    />
-                  </div>
-                </div>
+    <section className="bg-white">
+      <div className="lg:grid lg:min-h-screen lg:grid-cols-12 p-2">
+        <section className="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
+          <img
+            alt=""
+            src="https://media.istockphoto.com/id/1339523581/photo/dental-office-with-dentist-chair-dental-tools-and-waiting-area.jpg?s=2048x2048&w=is&k=20&c=OOQ8gtgXB1CNFYR1ZCxmHIaHgwGtcukxxXaBwhJ_iJk="
+            className="absolute inset-0 h-full w-full object-cover opacity-80"
+          />
 
-                <div>
-                  <label className="sr-only" htmlFor="message">
-                    Message
-                  </label>
-                  <textarea
-                    className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                    placeholder="Message"
-                    rows={8}
-                    id="message"
-                    defaultValue={""}
-                  />
-                </div>
-                <div className="mt-4">
-                  <button
-                    onClick={(e) => handleClick(e)}
-                    type="submit"
-                    className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium bg-white text-blue sm:w-auto"
-                  >
-                    Send Message
-                  </button>
-                </div>
-              </form>
-            </div>
-            <div className="lg:col-span-2 lg:py-12 flex justify-center md:items-start items-center mx-auto flex-col p-3">
-              <p className="max-w-xl text-lg flex justify-center text-blue font-bold text-[14px]">
-                LEARN ANYTHING
-              </p>
-              <p className="text-4xl font-medium flex md:justify-start justify-center w-[535px] ">
-                We Offer Best Dental Services
-              </p>
-              <div className="mt-7  ">
-                <div className="w-[535px] h-[180px] flex gap-6 group bg-[#E9F6FB] hover:bg-blue transition-all  px-6">
-                  <div className="logo flex justify-center items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-14 h-14 text-blue group-hover:text-white"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"
-                      />
-                    </svg>
-                  </div>
-                  <div className="flex flex-col border-1 justify-center gap-5  items-start ">
-                    <p className="font-medium text-xl text-[#323232]">
-                      Easy Booking
-                    </p>
-                    <p>
-                      Far far away, behind the word mountains, far from the
-                      countries Vokalia and Consonantia, there live the blind
-                      texts.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-8  ">
-                <div className="w-[535px] h-[180px] group flex gap-6 bg-[#E9F6FB] hover:bg-blue transition-all  px-6">
-                  <div className="logo flex justify-center items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-14 h-14 text-blue group-hover:text-white"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"
-                      />
-                    </svg>
-                  </div>
-                  <div className="flex flex-col border-1 justify-center gap-5  items-start ">
-                    <p className="font-medium text-xl text-[#323232]">
-                      Team Dentist
-                    </p>
-                    <p>
-                      Far far away, behind the word mountains, far from the
-                      countries Vokalia and Consonantia, there live the blind
-                      texts.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-8  ">
-                <div className="w-[535px] group h-[180px] flex gap-6 bg-[#E9F6FB] hover:bg-blue transition-all  px-6">
-                  <div className="logo flex justify-center items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-14 h-14 text-blue group-hover:text-white"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                      />
-                    </svg>
-                  </div>
-                  <div className="flex flex-col border-1 justify-center gap-5  items-start ">
-                    <p className="font-medium text-xl text-[#323232]">
-                      Best Price Guarantee
-                    </p>
-                    <p>
-                      Far far away, behind the word mountains, far from the
-                      countries Vokalia and Consonantia, there live the blind
-                      texts.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="hidden lg:relative lg:block lg:p-12">
+            <a className="block text-white" href="#">
+              <span className="sr-only">Home</span>
+              <svg
+                className="h-8 sm:h-10"
+                viewBox="0 0 28 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0.41 10.3847C1.14777 7.4194 2.85643 4.7861 5.2639 2.90424C7.6714 1.02234 10.6393 0 13.695 0C16.7507 0 19.7186 1.02234 22.1261 2.90424C24.5336 4.7861 26.2422 7.4194 26.98 10.3847H25.78C23.7557 10.3549 21.7729 10.9599 20.11 12.1147C20.014 12.1842 19.9138 12.2477 19.81 12.3047H19.67C19.5662 12.2477 19.466 12.1842 19.37 12.1147C17.6924 10.9866 15.7166 10.3841 13.695 10.3841C11.6734 10.3841 9.6976 10.9866 8.02 12.1147C7.924 12.1842 7.8238 12.2477 7.72 12.3047H7.58C7.4762 12.2477 7.376 12.1842 7.28 12.1147C5.6171 10.9599 3.6343 10.3549 1.61 10.3847H0.41ZM23.62 16.6547C24.236 16.175 24.9995 15.924 25.78 15.9447H27.39V12.7347H25.78C24.4052 12.7181 23.0619 13.146 21.95 13.9547C21.3243 14.416 20.5674 14.6649 19.79 14.6649C19.0126 14.6649 18.2557 14.416 17.63 13.9547C16.4899 13.1611 15.1341 12.7356 13.745 12.7356C12.3559 12.7356 11.0001 13.1611 9.86 13.9547C9.2343 14.416 8.4774 14.6649 7.7 14.6649C6.9226 14.6649 6.1657 14.416 5.54 13.9547C4.4144 13.1356 3.0518 12.7072 1.66 12.7347H0V15.9447H1.61C2.39051 15.924 3.154 16.175 3.77 16.6547C4.908 17.4489 6.2623 17.8747 7.65 17.8747C9.0377 17.8747 10.392 17.4489 11.53 16.6547C12.1468 16.1765 12.9097 15.9257 13.69 15.9447C14.4708 15.9223 15.2348 16.1735 15.85 16.6547C16.9901 17.4484 18.3459 17.8738 19.735 17.8738C21.1241 17.8738 22.4799 17.4484 23.62 16.6547ZM23.62 22.3947C24.236 21.915 24.9995 21.664 25.78 21.6847H27.39V18.4747H25.78C24.4052 18.4581 23.0619 18.886 21.95 19.6947C21.3243 20.156 20.5674 20.4049 19.79 20.4049C19.0126 20.4049 18.2557 20.156 17.63 19.6947C16.4899 18.9011 15.1341 18.4757 13.745 18.4757C12.3559 18.4757 11.0001 18.9011 9.86 19.6947C9.2343 20.156 8.4774 20.4049 7.7 20.4049C6.9226 20.4049 6.1657 20.156 5.54 19.6947C4.4144 18.8757 3.0518 18.4472 1.66 18.4747H0V21.6847H1.61C2.39051 21.664 3.154 21.915 3.77 22.3947C4.908 23.1889 6.2623 23.6147 7.65 23.6147C9.0377 23.6147 10.392 23.1889 11.53 22.3947C12.1468 21.9165 12.9097 21.6657 13.69 21.6847C14.4708 21.6623 15.2348 21.9135 15.85 22.3947C16.9901 23.1884 18.3459 23.6138 19.735 23.6138C21.1241 23.6138 22.4799 23.1884 23.62 22.3947Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </a>
+
+            <h2 className="mt-6 text-2xl font-bold text-blue sm:text-3xl md:text-4xl">
+              Welcome to Dentish 🦑
+            </h2>
+
+            <p className="mt-4 leading-relaxed text-black">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
+              nam dolorum aliquam, quibusdam aperiam voluptatum.
+            </p>
           </div>
-        </div>
-      </section>
-    </>
+        </section>
+
+        <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6 bg-blue">
+          <div className="max-w-xl lg:max-w-3xl">
+            <div className="relative -mt-16 block lg:hidden">
+              <a
+                className="inline-flex size-16 items-center justify-center rounded-full bg-white text-blue-600 sm:size-20"
+                href="#"
+              >
+                <span className="sr-only">Home</span>
+                <svg
+                  className="h-8 sm:h-10"
+                  viewBox="0 0 28 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.41 10.3847C1.14777 7.4194 2.85643 4.7861 5.2639 2.90424C7.6714 1.02234 10.6393 0 13.695 0C16.7507 0 19.7186 1.02234 22.1261 2.90424C24.5336 4.7861 26.2422 7.4194 26.98 10.3847H25.78C23.7557 10.3549 21.7729 10.9599 20.11 12.1147C20.014 12.1842 19.9138 12.2477 19.81 12.3047H19.67C19.5662 12.2477 19.466 12.1842 19.37 12.1147C17.6924 10.9866 15.7166 10.3841 13.695 10.3841C11.6734 10.3841 9.6976 10.9866 8.02 12.1147C7.924 12.1842 7.8238 12.2477 7.72 12.3047H7.58C7.4762 12.2477 7.376 12.1842 7.28 12.1147C5.6171 10.9599 3.6343 10.3549 1.61 10.3847H0.41ZM23.62 16.6547C24.236 16.175 24.9995 15.924 25.78 15.9447H27.39V12.7347H25.78C24.4052 12.7181 23.0619 13.146 21.95 13.9547C21.3243 14.416 20.5674 14.6649 19.79 14.6649C19.0126 14.6649 18.2557 14.416 17.63 13.9547C16.4899 13.1611 15.1341 12.7356 13.745 12.7356C12.3559 12.7356 11.0001 13.1611 9.86 13.9547C9.2343 14.416 8.4774 14.6649 7.7 14.6649C6.9226 14.6649 6.1657 14.416 5.54 13.9547C4.4144 13.1356 3.0518 12.7072 1.66 12.7347H0V15.9447H1.61C2.39051 15.924 3.154 16.175 3.77 16.6547C4.908 17.4489 6.2623 17.8747 7.65 17.8747C9.0377 17.8747 10.392 17.4489 11.53 16.6547C12.1468 16.1765 12.9097 15.9257 13.69 15.9447C14.4708 15.9223 15.2348 16.1735 15.85 16.6547C16.9901 17.4484 18.3459 17.8738 19.735 17.8738C21.1241 17.8738 22.4799 17.4484 23.62 16.6547ZM23.62 22.3947C24.236 21.915 24.9995 21.664 25.78 21.6847H27.39V18.4747H25.78C24.4052 18.4581 23.0619 18.886 21.95 19.6947C21.3243 20.156 20.5674 20.4049 19.79 20.4049C19.0126 20.4049 18.2557 20.156 17.63 19.6947C16.4899 18.9011 15.1341 18.4757 13.745 18.4757C12.3559 18.4757 11.0001 18.9011 9.86 19.6947C9.2343 20.156 8.4774 20.4049 7.7 20.4049C6.9226 20.4049 6.1657 20.156 5.54 19.6947C4.4144 18.8757 3.0518 18.4472 1.66 18.4747H0V21.6847H1.61C2.39051 21.664 3.154 21.915 3.77 22.3947C4.908 23.1889 6.2623 23.6147 7.65 23.6147C9.0377 23.6147 10.392 23.1889 11.53 22.3947C12.1468 21.9165 12.9097 21.6657 13.69 21.6847C14.4708 21.6623 15.2348 21.9135 15.85 22.3947C16.9901 23.1884 18.3459 23.6138 19.735 23.6138C21.1241 23.6138 22.4799 23.1884 23.62 22.3947Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </a>
+
+              <h1 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+                Welcome to Our Destish  🦑
+              </h1>
+
+              <p className="mt-4 leading-relaxed text-gray-500">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Eligendi nam dolorum aliquam, quibusdam aperiam voluptatum.
+              </p>
+            </div>
+
+            <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+              <div className="col-span-6 sm:col-span-3">
+                <label
+                  htmlFor="FirstName"
+                  className="block text-md font-medium text-gray-700"
+                >
+                  Full Name
+                </label>
+
+                <input
+                  type="text"
+                  id="FirstName"
+                  name="first_name"
+                  className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                />
+              </div>
+
+              <div className="col-span-6 sm:col-span-3">
+                <label
+                  htmlFor="LastName"
+                  className="block text-md font-medium text-gray-700"
+                >
+                  Contact Number
+                </label>
+
+                <input
+                  type="text"
+                  id="LastName"
+                  name="last_name"
+                  className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                />
+              </div>
+
+              <div className="col-span-6 sm:col-span-3">
+                <label
+                  htmlFor="Password"
+                  className="block text-md font-medium text-gray-700"
+                >
+                  {" "}
+                  Appoinment Date{" "}
+                </label>
+
+                <input
+                  type="password"
+                  id="Password"
+                  name="password"
+                  className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                />
+              </div>
+
+              <div className="col-span-6 sm:col-span-3">
+                <label
+                  htmlFor="PasswordConfirmation"
+                  className="block text-md font-medium text-gray-700"
+                >
+                  Appoinment Time
+                </label>
+
+                <input
+                  type="password"
+                  id="PasswordConfirmation"
+                  name="password_confirmation"
+                  className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                />
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <label
+                  htmlFor="email"
+                  className="block text-md font-medium text-gray-700"
+                >
+                  {" "}
+                  Email Address{" "}
+                </label>
+
+                <input
+                  type="email"
+                  className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                />
+              </div>
+
+              <div className="col-span-6 sm:col-span-3">
+                <label
+                  htmlFor="HeadlineAct"
+                  className="block text-md font-medium text-gray-900"
+                >
+                  {" "}
+                  Select Doctor{" "}
+                </label>
+
+                <select
+                  name="HeadlineAct"
+                  id="HeadlineAct"
+                  className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                >
+                  <option value="">Please select</option>
+                  <option value="JM">John Mayer</option>
+                  <option value="SRV">Stevie Ray Vaughn</option>
+                  <option value="JH">Jimi Hendrix</option>
+                  <option value="BBK">B.B King</option>
+                  <option value="AK">Albert King</option>
+                  <option value="BG">Buddy Guy</option>
+                  <option value="EC">Eric Clapton</option>
+                </select>
+              </div>
+
+              <div className="col-span-6">
+                <label htmlFor="MarketingAccept" className="flex gap-4">
+                  <input
+                    type="checkbox"
+                    id="MarketingAccept"
+                    name="marketing_accept"
+                    className="size-5 rounded-md border-gray-200 bg-white shadow-sm"
+                  />
+
+                  <span className="text-sm text-gray-700">
+                    I want to receive emails about events, product updates and
+                    company announcements.
+                  </span>
+                </label>
+              </div>
+
+              <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
+                <button className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
+                  Comform
+                </button>
+              </div>
+            </form>
+          </div>
+        </main>
+      </div>
+    </section>
   );
 };
 

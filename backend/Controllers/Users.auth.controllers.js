@@ -102,7 +102,7 @@ exports.setPassword = async (req, res) => {
       await user.save();
       if (email) {
         const subject = " Password SuccessFully reset ";
-        const html = `<p>SuccessFully reset Password</p>`;
+        const html = `<p>SuccessFully reset your Password</p>`;
         const response = await MailSend({ to: email, subject, html });
         return res.json(response);
       }

@@ -37,7 +37,7 @@ const transporter = nodemailer.createTransport({
   auth: {
     // TODO: replace `user` and `pass` values from <https://forwardemail.net>
     user: "kaalidash208@gmail.com",
-    pass: "kxbs hhxj kxzr bbuj",
+    pass:process.env.pass,
   },
 });
 
@@ -104,14 +104,14 @@ exports.mailTemplates = (appoiments) => {
   }
   .cancled{
     background: red;
-    padding: 5px;
+    padding: 2px;
     border-radius: 3px;
     color: white;
     font: bold;
   }
   .approved{
     background: green;
-    padding: 5px;
+    padding: 2px;
     border-radius: 3px;
     color: white;
     font: bold;

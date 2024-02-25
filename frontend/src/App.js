@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Notfound from "./features/NotFound/Notfound";
 import Homepages from "./Pages/Homepages";
-import SignupPages from "./features/Navbar/SignupPages";
+import SignupPages from "./Pages/SignupPages";
 import LoginPages from "./Pages/LoginPages";
 import UserdashboardPages from "./Pages/UserdashboardPages";
 import AppoinmentsPages from "./Pages/AppoinmentsPages";
@@ -15,12 +15,15 @@ import ViewUsersAppoinmentPages from "./Pages/ViewUsersAppoinmentPages";
 import AddBlogPages from "./Pages/AddBlogPages";
 import DoctorAccountPages from "./Pages/DoctorAccountPages";
 import NewLogin from "./features/Auth/components/NewLogin";
-// import Protectes from "./features/Auth/components/Protectes";
 import ForgetPasswordPages from "./Pages/ForgetPasswordPages";
-
+import ResetPasswordPages from "./Pages/ResetPasswordPages";
+import {GetsAllBlogsAsync} from "./features/Userdashboard copy/adminSlice"
+import { useDispatch} from "react-redux";
 function App() {
-  
-
+  const dispatch=useDispatch();
+  useEffect(()=>{
+  dispatch(GetsAllBlogsAsync())
+  },[])
   const router = createBrowserRouter([
     {
       path: "/signup",
@@ -39,6 +42,11 @@ function App() {
       element: <LoginPages></LoginPages>,
     },
     {
+      path: "/api/reset-password",
+      exact: true,
+      element: <ResetPasswordPages></ResetPasswordPages>,
+    },
+    {
       path: "/user",
       exact: true,
       element: (
@@ -50,11 +58,7 @@ function App() {
     {
       path: "/Forget",
       exact: true,
-      element: (
-        
-          <ForgetPasswordPages></ForgetPasswordPages>
-      
-      ),
+      element: <ForgetPasswordPages></ForgetPasswordPages>,
     },
     {
       path: "/user/update/profile",

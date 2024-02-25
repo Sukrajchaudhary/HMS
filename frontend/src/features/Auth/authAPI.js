@@ -86,3 +86,28 @@ export function ResetPassword(email){
     }
   })
 }
+
+// ResePassword
+export function ResetNewPassword(data){
+  return new Promise(async(resolve,reject)=>{
+    try {
+      const resonse = await fetch("http://localhost:8080/api/reset-password",{
+        method:'POST',
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify(data)
+      })
+      if(resonse.ok){
+        const data= await resonse.json();
+        resolve(data)
+      }
+      else{
+        const error= await resonse.json();
+        reject(error)
+      }
+    } catch (error) {
+      reject(error.message)
+    }
+  })
+}
