@@ -37,8 +37,8 @@ export function LoginUsers(userinfo) {
         localStorage.setItem("token", JSON.stringify(data));
         resolve({data});
       } else {
-        const error = await response.text();
-        reject({error});
+        const error = await response.json();
+        reject(error);
       }
     } catch (error) {
       reject( {error} );

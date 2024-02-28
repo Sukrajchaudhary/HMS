@@ -11,9 +11,6 @@ const appoinmentRouter = require("./Routes/Appoinments.routes");
 const adminRouter=require('./Routes/Admin.routes')
 const bodyParser = require("body-parser");
 const session = require("express-session");
-
-
-
 // Corrected import
 const { isAuth } = require("./common/Common.js");
 
@@ -36,17 +33,11 @@ app.use(
     exposedHeaders:['X-Total-Count']
   })
 );
-
-
 app.use("/api", userauthRouter.router);
 app.use("/api",isAuth, doctorRouter.router);
-app.use("/api",isAuth,adminRouter.router)
+app.use("/api",adminRouter.router)
 app.use("/api",isAuth, appoinmentRouter.router);
 app.use("/api",isAuth, userRouter.router);
-
-
-  
-
 // Connect to the database and start the server
 ConnectToDb()
   .then(() => {

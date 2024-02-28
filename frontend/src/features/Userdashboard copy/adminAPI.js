@@ -12,7 +12,7 @@ export function GetAllusersAppoinments(pagination) {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials:'include'
+        credentials: "include",
       }
     );
     if (response.ok) {
@@ -30,11 +30,8 @@ export function CreateBlog(blogInfo) {
       "http://localhost:8080/api/admin/blog/create",
       {
         method: "POST",
-        headers:{
-          'content-type':'application/json'
-        },
-        credentials:'include',
         body: blogInfo,
+        credentials: "include",
       }
     );
     if (response.ok) {
@@ -44,20 +41,19 @@ export function CreateBlog(blogInfo) {
   });
 }
 // Gets All Blogs
-export function GetsAllBlogs(){
-  return new Promise(async(resolve,reject)=>{
-    const response= await fetch('http://localhost:8080/api/admin/blog',{
-      method:'GET',
-      headers:{
-        'Content-Type':'application/json'
+export function GetsAllBlogs() {
+  return new Promise(async (resolve, reject) => {
+    const response = await fetch("http://localhost:8080/api/admin/blog", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
       },
-      credentials:'include'
-    })
-    if(response.ok){
-      const data= await response.json();
-      resolve({data})
+    });
+    if (response.ok) {
+      const data = await response.json();
+      resolve({ data });
     }
-  })
+  });
 }
 // Create Doctor Account
 export function CreateDoctorAccount(doctorInfo) {
@@ -76,19 +72,22 @@ export function CreateDoctorAccount(doctorInfo) {
   });
 }
 // Update Users Appoinments;
-export function UpdateUserAppoinments(update){
-  return new Promise(async(resolve)=>{
-   const response= await fetch('http://localhost:8080/api/appoinment/update/'+update._id,{
-    method:"PATCH",
-    headers:{
-      'Content-Type':'application/json'
-    },
-    credentials:'include',
-    body:JSON.stringify(update)
-   })
-   if(response.ok){
-    const data =response.json();
-    resolve({data})
-   }
-  })
+export function UpdateUserAppoinments(update) {
+  return new Promise(async (resolve) => {
+    const response = await fetch(
+      "http://localhost:8080/api/appoinment/update/" + update._id,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(update),
+      }
+    );
+    if (response.ok) {
+      const data = response.json();
+      resolve({ data });
+    }
+  });
 }

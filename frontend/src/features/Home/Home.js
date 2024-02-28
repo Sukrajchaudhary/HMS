@@ -1,5 +1,6 @@
 import React from "react";
 import { Slide } from "react-slideshow-image";
+import { ArrowRight } from "lucide-react";
 import "react-slideshow-image/dist/styles.css";
 import img1 from "../../Assest/images.jpg";
 import img2 from "../../Assest/img.jpeg";
@@ -40,7 +41,7 @@ const Home = () => {
                   backgroundImage: `url(${slideImage.url})`,
                 }}
               >
-                <div className="w-full bg-[#B1B3B7] bg-opacity-75 h-[100%] flex flex-col gap-4 justify-center items-center">
+                <div className="w-full bg-[#B1B3B7] bg-opacity-75 h-[100%] flex flex-col p-5 gap-4 justify-center items-center">
                   <div className="flex justify-start items-center flex-col ">
                     <p className="text-[#FFFFFF] font-normal text-6xl">
                       Dentist Services <br /> that You Can Trust
@@ -51,12 +52,13 @@ const Home = () => {
                       blind texts.
                     </p>
                   </div>
-                  <div className="flex flex-row md:gap-5 justify-center items-center">
-                    <button className="border-1 cursor-pointer border-transparent bg-[#00BCD4] w-60 h-12 rounded text-[#FFFFFF] font-normal text-[18px]">
-                      See All Services
-                    </button>
-                    <button className="border-1 border-transparent cursor-pointer bg-[#FFFFFF] w-60 h-12 rounded text-blue font-normal text-[18px]">
-                      View Courses
+                  <div className="flex flex-row gap-2 space-y-2 md:flex-row md:space-x-2 md:space-y-0">
+                    <button
+                      type="button"
+                      className="inline-flex items-center rounded-md bg-blue px-6 py-3 text-sm font-semibold text-white hover:bg-black/80"
+                    >
+                      Gets Starts
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </button>
                   </div>
                 </div>

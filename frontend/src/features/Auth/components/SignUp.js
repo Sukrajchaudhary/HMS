@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -12,23 +12,12 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
-  const navigate=useNavigate();
   const user = useSelector(loginResponse);
-  console.log(user);
   const Sgnuperror = useSelector(error);
-  console.log(Sgnuperror);
-  const loginToken = localStorage.getItem("token");
-  const admin=JSON.parse(loginToken)
-  if (admin) {
-    if (admin.role === "admine") {
-      navigate("/admin/dashboard");
-    } else if (admin.role === "user") {
-      navigate("/user");
-    }
-  }
+
   return (
     <>
-
+      {user?.token && <Navigate to="/login"> </Navigate>}
       <section className="bg-gray-100">
         <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
@@ -128,9 +117,12 @@ const SignUp = () => {
                 <div className="relative">
                   <p className="mt-1 text-pretty text-sm text-gray-700">
                     Select Gender:
-                  </p> 
-               <Link to='/Forget'>
-               <p className="absolute right-0 top-0 text-blue  font-bold cursor-pointer">Forget Password ?</p></Link>
+                  </p>
+                  <Link to="/Forget">
+                    <p className="absolute right-0 top-0 text-blue  font-bold cursor-pointer">
+                      Forget Password ?
+                    </p>
+                  </Link>
                   <select
                     className="w-full rounded-lg border-gray-200 p-3 text-sm"
                     {...register("gender", {

@@ -58,7 +58,7 @@ exports.LoginUsers = async (req, res) => {
         sameSite: "none",
       })
       .status(200)
-      .json({ token });
+      .json({ token:token,role:user.role });
   } catch (error) {
     return res.status(500).send(error.message);
   }

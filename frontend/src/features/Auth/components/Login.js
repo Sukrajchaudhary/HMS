@@ -13,10 +13,10 @@ const Login = () => {
   } = useForm();
   const dispatch = useDispatch();
   const LoginUser = useSelector(loginResponse);
-  console.log("from login", LoginUser);
   const loginerror = useSelector(error);
   const loginToken = localStorage.getItem("token");
   const admin = JSON.parse(loginToken);
+  console.log("login",LoginUser?.role)
   // if (admin) {
   //   if (admin.role === "admine") {
   //     navigate("/admin/dashboard");
@@ -27,8 +27,8 @@ const Login = () => {
 
   return (
     <>
-      {LoginUser && <Navigate to="/user"></Navigate>}
-      {/*  {admin?.role==="admine" &&<Navigate to='/admin/dashboard'></Navigate>} */}
+      {LoginUser?.role==="user" && <Navigate to="/user"></Navigate>}
+       {LoginUser?.role==="admine" &&<Navigate to='/admin/dashboard'></Navigate>}
       <section className="relative flex  flex-wrap lg:h-screen lg:items-center ">
         <div className="w-full px-4 py-5 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-lg text-center">
