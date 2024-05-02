@@ -3,18 +3,12 @@ import { Navigate } from "react-router-dom";
 
 const ProtectedAdmin = ({ children }) => {
   const loginInfo = localStorage.getItem("token");
-  console.log("from protected Admine", loginInfo);
-  const logintoken = JSON.parse(loginInfo);
+  const logintoken = loginInfo ? JSON.parse(loginInfo) : null;
 
-  if (!logintoken) {
-    return <Navigate to="/" replace={true}></Navigate>;
+  if (logintoken?.role === "admin" && logintoken?.role !== "user") {
+    return children;
   }
-  if (logintoken && logintoken.role== "admine") {
-    
-  return children;
-  }
-
-  return <Navigate to="/" replace={true}></Navigate>;
+  return <Navigate to="/" />;
 };
 
 export default ProtectedAdmin;

@@ -1,21 +1,27 @@
 import { useEffect, useState } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { Link, useLocation} from "react-router-dom";
-import {useSelector, useDispatch} from "react-redux"
+import { Link, useLocation,useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import AllUsersAppoinment from "./AllUsersAppoinment";
-import {userinfo,getUsersAsync} from '../../Auth/authSlice'
+import { userinfo, getUsersAsync } from "../../Auth/authSlice";
 const Admindashboard = ({ children }) => {
-  const UserDetails=useSelector(userinfo);
-  const dispatch=useDispatch()
+  const navigate=useNavigate()
+  const UserDetails = useSelector(userinfo);
+  const dispatch = useDispatch();
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-useEffect(()=>{
-dispatch(getUsersAsync())
-},[])
+  useEffect(() => {
+    dispatch(getUsersAsync());
+  }, []);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/")
+  };
+  
   return (
     <>
-      <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+      <nav className="fixed top-0 z-50 w-full bg-[#59D5E0] border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div className="px-3 py-3 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start rtl:justify-end">
@@ -59,24 +65,24 @@ dispatch(getUsersAsync())
                 group inline-flex items-center rounded-md  px-3 py-2 text-base font-medium  focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
                         >
                           <button
-                              type="button"
-                              className="flex text-sm bg-gray-800 border-2 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                              aria-expanded="false"
-                              data-dropdown-toggle="dropdown-user"
-                            >
-                              <span className="sr-only">Open user menu</span>
-                              {UserDetails?.pic ? (
-                                <img
-                                  className="w-12 h-12 rounded-full object-cover justify-center"
-                                  src={UserDetails?.pic}
-                                  alt="user photo"
-                                />
-                              ) : (
-                                <span className="w-12 h-12 rounded-full object-cover justify-center flex items-center font-bold text-lg">
-                                  {UserDetails?.username.charAt(0)}
-                                </span>
-                              )}
-                            </button>
+                            type="button"
+                            className="flex text-sm bg-gray-800 border-2 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                            aria-expanded="false"
+                            data-dropdown-toggle="dropdown-user"
+                          >
+                            <span className="sr-only">Open user menu</span>
+                            {UserDetails?.pic ? (
+                              <img
+                                className="w-12 h-12 rounded-full object-cover justify-center"
+                                src={UserDetails?.pic}
+                                alt="user photo"
+                              />
+                            ) : (
+                              <span className="w-12 h-12 rounded-full object-cover justify-center flex items-center font-bold text-lg">
+                                {UserDetails?.username.charAt(0)}
+                              </span>
+                            )}
+                          </button>
                         </Popover.Button>
                         <Transition
                           as={Fragment}
@@ -95,17 +101,15 @@ dispatch(getUsersAsync())
                                     class="text-sm font-medium text-[black] dark:text-white"
                                     role="none"
                                   >
-                                    Hi : {UserDetails?.username} 
-                                  
+                                    Hi : {UserDetails?.username}
                                   </p>
                                   <p
                                     class="text-sm font-medium text-blue truncate dark:text-gray-300"
                                     role="none"
                                   >
-                                  {UserDetails?.email}
-                                 
+                                    {UserDetails?.email}
                                   </p>
-                                  {UserDetails?.role === "admine" ? (
+                                  {UserDetails?.role === "admin" ? (
                                     <p
                                       class="text-sm bg-[green] text-white border-2 rounded-lg flex justify-center items-center text-md font-medium  truncate dark:text-gray-300"
                                       role="none"
@@ -127,7 +131,7 @@ dispatch(getUsersAsync())
                                       </p>
                                     </li>
                                   </Link>
-                                  <li>
+                                  <li onClick={handleLogout}>
                                     <p
                                       class="block px-4 py-2  hover:bg-blue text-sm text-[black] cursor-pointer "
                                       role="menuitem"
@@ -230,29 +234,6 @@ dispatch(getUsersAsync())
                 </a>
               </li>
             </Link>
-            {/* <li>
-              <a
-                href="#"
-                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <svg
-                  class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 18 16"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
-                  />
-                </svg>
-                <span class="flex-1 ms-3 whitespace-nowrap">Sign In</span>
-              </a>
-            </li> */}
             <Link to="/admin/dashboard/doctor/create/account">
               <li
                 className={`${

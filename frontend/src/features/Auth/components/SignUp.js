@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { loginResponse, createUserAsync, error } from "../authSlice";
+import toast from "react-hot-toast";
 const SignUp = () => {
   const {
     register,
@@ -14,6 +15,11 @@ const SignUp = () => {
   const dispatch = useDispatch();
   const user = useSelector(loginResponse);
   const Sgnuperror = useSelector(error);
+  useEffect(() => {
+    if (Sgnuperror) {
+      toast.error(Sgnuperror?.message);
+    }
+  }, [Sgnuperror]);
 
   return (
     <>
@@ -139,22 +145,23 @@ const SignUp = () => {
                     <p className="text-[red]">{errors.gender.message}</p>
                   )}
                 </div>
-                {Sgnuperror && (
-                  <p className="text-red">{Sgnuperror?.message}</p>
-                )}
-                <div class="flex items-center justify-between">
-                  <p class="text-sm text-gray-500 text-blue">
-                    Already Have an Account?
-                    <Link class="underline" to="/Login">
+
+                <div className="flex items-center justify-between">
+                  <p className="text-sm text-gray-500">
+                    No account?
+                    <Link
+                      className="underline cursor-pointer text-blue"
+                      to="/Login"
+                    >
                       Login
                     </Link>
                   </p>
 
                   <button
                     type="submit"
-                    class="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white bg-blue"
+                    className="inline-block rounded-lg bg-blue px-5 py-3 text-sm font-medium text-white"
                   >
-                    Sign in
+                    Signup
                   </button>
                 </div>
               </form>

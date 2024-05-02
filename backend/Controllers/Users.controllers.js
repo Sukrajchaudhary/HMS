@@ -1,4 +1,3 @@
-const { ObjectId } = require("mongodb");
 const { User } = require("../Models/Users.model");
 const cloudinary = require("cloudinary").v2;
 

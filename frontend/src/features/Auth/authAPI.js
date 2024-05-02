@@ -11,7 +11,6 @@ export function CreateUsers(userdata) {
     });
     if (response.ok) {
       const data = await response.json();
-      localStorage.setItem("token", JSON.stringify(data));
       resolve({ data });
     } else {
       const error = await response.json();
@@ -52,8 +51,9 @@ export function getUsers() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        "token":localStorage.getItem("token")
       },
-      credentials:'include',
+    
     });
     if (response.ok) {
       const data = await response.json();

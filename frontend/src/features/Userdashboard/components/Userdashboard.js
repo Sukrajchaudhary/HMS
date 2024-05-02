@@ -4,21 +4,26 @@ import { Fragment } from "react";
 import img1 from "../../../Assest/sukraj.JPG";
 import { Link, Navigate } from "react-router-dom";
 import Doctors from "../../Doctors/components/Doctors";
-import { useLocation } from "react-router-dom";
+import { useLocation,useNavigate  } from "react-router-dom";
 import { getUsersAsync, userinfo } from "../../Auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 const Userdashboard = ({ children }) => {
+  const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
-  const pathName = location.pathname; 
+  const pathName = location.pathname;
   const userDetail = useSelector(userinfo);
-  console.log(userDetail)
   const loginToken = localStorage.getItem("token");
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUsersAsync());
   }, []);
- 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/")
+  };
+  
+
   return (
     <>
       {!loginToken && <Navigate to="/" replace={true}></Navigate>}
@@ -111,7 +116,7 @@ const Userdashboard = ({ children }) => {
                                     {userDetail?.email}
                                   </p>
 
-                                  {userDetail?.role === "admine" ? (
+                                  {userDetail?.role === "admin" ? (
                                     <p
                                       class="text-sm bg-[green] text-white border-2 rounded-lg flex justify-center items-center text-md font-medium  truncate dark:text-gray-300"
                                       role="none"
@@ -133,7 +138,7 @@ const Userdashboard = ({ children }) => {
                                       </p>
                                     </li>
                                   </Link>
-                                  <li>
+                                  <li onClick={handleLogout}>
                                     <p
                                       class="block px-4 py-2  hover:bg-blue text-sm text-[black] cursor-pointer "
                                       role="menuitem"

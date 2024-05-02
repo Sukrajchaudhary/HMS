@@ -11,8 +11,9 @@ export function GetAllusersAppoinments(pagination) {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          "token":localStorage.getItem("token")
+      
         },
-        credentials: "include",
       }
     );
     if (response.ok) {
@@ -31,7 +32,9 @@ export function CreateBlog(blogInfo) {
       {
         method: "POST",
         body: blogInfo,
-        credentials: "include",
+        headers:{
+          "token":localStorage.getItem("token")
+        }
       }
     );
     if (response.ok) {
@@ -62,6 +65,7 @@ export function CreateDoctorAccount(doctorInfo) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "token":localStorage.getItem("token")
       },
       body: JSON.stringify(doctorInfo),
     });
@@ -80,8 +84,8 @@ export function UpdateUserAppoinments(update) {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          "token":localStorage.getItem("token")
         },
-        credentials: "include",
         body: JSON.stringify(update),
       }
     );

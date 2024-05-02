@@ -1,9 +1,10 @@
-import React from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, Navigate} from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { LoginUserAsync, error, loginResponse } from "../authSlice";
+import { LoginUserAsync, error } from "../authSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 const Login = () => {
   const {
     register,
@@ -12,23 +13,20 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
-  const LoginUser = useSelector(loginResponse);
   const loginerror = useSelector(error);
   const loginToken = localStorage.getItem("token");
   const admin = JSON.parse(loginToken);
-  console.log("login",LoginUser?.role)
-  // if (admin) {
-  //   if (admin.role === "admine") {
-  //     navigate("/admin/dashboard");
-  //   } else if (admin.role === "user") {
-  //     navigate("/user");
-  //   }
-  // }
+  useEffect(() => {
+    if (loginerror) {
+      toast.error(loginerror?.message);
+    }
+  }, [loginerror]);
 
   return (
     <>
-      {LoginUser?.role==="user" && <Navigate to="/user"></Navigate>}
-       {LoginUser?.role==="admine" &&<Navigate to='/admin/dashboard'></Navigate>}
+      {admin?.role === "user" && <Navigate to="/user"></Navigate>}
+      {admin?.role === "admin" && <Navigate to="/admin/dashboard"></Navigate>}
+
       <section className="relative flex  flex-wrap lg:h-screen lg:items-center ">
         <div className="w-full px-4 py-5 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-lg text-center">
@@ -133,13 +131,6 @@ const Login = () => {
                 )}
               </div>
             </div>
-            {loginerror && (
-              <p className="text-red">
-                {typeof loginerror === "object"
-                  ? loginerror.message
-                  : loginerror}
-              </p>
-            )}
 
             <div className="flex items-center justify-between">
               <p className="text-sm text-gray-500">
@@ -169,6 +160,7 @@ const Login = () => {
           />
         </div>
       </section>
+  
     </>
   );
 };

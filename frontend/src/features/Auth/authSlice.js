@@ -13,6 +13,7 @@ const initialState = {
   status: "idle",
   userDetail: null,
   sentmail: false,
+  isloading:false
 };
 
 export const createUserAsync = createAsyncThunk(
@@ -74,6 +75,7 @@ export const authSlice = createSlice({
     builder
       .addCase(createUserAsync.pending, (state) => {
         state.status = "loading";
+        state.isloading=true
       })
       .addCase(createUserAsync.fulfilled, (state, action) => {
         state.status = "idle";
@@ -96,6 +98,7 @@ export const authSlice = createSlice({
       })
       .addCase(LoginUserAsync.pending, (state) => {
         state.status = "loading";
+        state.isloading=true
       })
       .addCase(LoginUserAsync.fulfilled, (state, action) => {
         state.status = "idle";
@@ -127,5 +130,6 @@ export const loginResponse = (state) => state.auth.loginInfo;
 export const error = (state) => state.auth.error;
 export const userinfo = (state) => state.auth.userDetail;
 export const Mail = (state) => state.auth.sentmail;
+export const loading=(state)=>state.auth.isloading
 
 export default authSlice.reducer;

@@ -17,14 +17,17 @@ import DoctorAccountPages from "./Pages/DoctorAccountPages";
 import NewLogin from "./features/Auth/components/NewLogin";
 import ForgetPasswordPages from "./Pages/ForgetPasswordPages";
 import ResetPasswordPages from "./Pages/ResetPasswordPages";
-import {GetsAllBlogsAsync} from "./features/Userdashboard copy/adminSlice"
-import { useDispatch} from "react-redux";
-import { loginResponse } from "./features/Auth/authSlice";
+import { GetsAllBlogsAsync } from "./features/Userdashboard copy/adminSlice";
+import { useDispatch } from "react-redux";
+import ProtectedAdmin from "./features/Auth/components/ProtectedAdmin";
+import { Toaster } from "react-hot-toast";
 function App() {
-  const dispatch=useDispatch();
-  useEffect(()=>{
-  dispatch(GetsAllBlogsAsync())
-  },[])
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(GetsAllBlogsAsync());
+  }, [dispatch]);
+
   const router = createBrowserRouter([
     {
       path: "/signup",
@@ -75,40 +78,39 @@ function App() {
       path: "/admin/dashboard",
       exact: true,
       element: (
-        <Protectes>
-          {" "}
+        <ProtectedAdmin>
           <AdminDashboardPages></AdminDashboardPages>
-        </Protectes>
+        </ProtectedAdmin>
       ),
     },
     {
       path: "/admin/dashboard/alluserappoinment",
       exact: true,
       element: (
-        <Protectes>
+        <ProtectedAdmin>
           {" "}
           <ViewUsersAppoinmentPages></ViewUsersAppoinmentPages>
-        </Protectes>
+        </ProtectedAdmin>
       ),
     },
     {
       path: "/admin/dashboard/addblog",
       exact: true,
       element: (
-        <Protectes>
+        <ProtectedAdmin>
           {" "}
           <AddBlogPages></AddBlogPages>
-        </Protectes>
+        </ProtectedAdmin>
       ),
     },
     {
       path: "/admin/dashboard/doctor/create/account",
       exact: true,
       element: (
-        <Protectes>
+        <ProtectedAdmin>
           {" "}
           <DoctorAccountPages></DoctorAccountPages>
-        </Protectes>
+        </ProtectedAdmin>
       ),
     },
     {
@@ -125,10 +127,8 @@ function App() {
       exact: true,
       element: (
         <Protectes>
-          <Protectes>
-            {" "}
-            <MakeAppoinmentsPages></MakeAppoinmentsPages>
-          </Protectes>
+          {" "}
+          <MakeAppoinmentsPages></MakeAppoinmentsPages>
         </Protectes>
       ),
     },
@@ -149,7 +149,12 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <Toaster></Toaster>
+    </>
+  );
 }
 
 export default App;

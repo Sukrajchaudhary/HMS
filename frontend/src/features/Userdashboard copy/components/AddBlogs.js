@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { CreateBlogAsync, blog } from "../adminSlice";
+import { CreateBlogAsync, Blogs } from "../adminSlice";
+import toast from "react-hot-toast";
 
 const AddBlogs = () => {
   const dispatch = useDispatch();
-  const Blos = useSelector(blog);
+  const Blog = useSelector(Blogs);
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
   const [description, setdescription] = useState(null);
@@ -27,6 +28,11 @@ const AddBlogs = () => {
     dispatch(CreateBlogAsync(formData));
   };
 
+  useEffect(() => {
+    if (Blog) {
+      toast.success(Blog?.message);
+    }
+  }, [Blog]);
   return (
     <div>
       <>

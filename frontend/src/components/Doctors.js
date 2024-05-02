@@ -1,5 +1,5 @@
 import React from "react";
-import img1 from "../Assest/jonny.jpg";
+import img1 from "../Assest/img.jpeg";
 const Doctors = () => {
   return (
     <div>

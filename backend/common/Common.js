@@ -1,21 +1,21 @@
 const jwt = require("jsonwebtoken"); // Import jsonwebtoken package
 const nodemailer = require("nodemailer");
 exports.isAuth = (req, res, next) => {
-  const token = req.cookies["jwt"];
-  if (!token) {
-    return res
-      .status(401)
-      .send({ error: "Please authenticate using a valid token" });
-  }
-  try {
-    const data = jwt.verify(token, process.env.SECRETE);
-    req.user = data;
-    next();
-  } catch (error) {
-    return res
-      .status(401)
-      .send({ error: "Please authenticate using a valid Token" });
-  }
+  const token = req.headers["token"];
+if (!token) {
+  return res.status(401).send({ error: "Please provide a token" });
+}
+
+try {
+  const logintoken = JSON.parse(token);
+  const data = jwt.verify(logintoken.token, process.env.SECRETE);
+  req.user = data;
+  next();
+} catch (error) {
+  return res.status(401).send({ error: "Invalid token format" });
+}
+
+ 
 };
 
 exports.Sanetizer = (user) => {

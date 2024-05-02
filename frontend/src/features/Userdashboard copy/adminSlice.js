@@ -13,6 +13,7 @@ const initialState = {
   blog: [],
   totalAppoinment: 0,
   doctor: null,
+  blogStatus:null
 };
 
 export const GetAllusersAppoinmentsAsync = createAsyncThunk(
@@ -72,7 +73,7 @@ export const admineSlice = createSlice({
       })
       .addCase(CreateBlogAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        state.blog = action.payload;
+        state.blogStatus = action.payload;
       })
       .addCase(CreateDoctorAccountAsync.pending, (state) => {
         state.status = "loading";
@@ -104,5 +105,6 @@ export const Allappoinments = (state) => state.admin.allAppoinments;
 export const blog = (state) => state.admin.blog;
 export const Toatls = (state) => state.admin.totalAppoinment;
 export const CreatedDoctor = (state) => state.admin.doctor;
+export const Blogs = (state) => state.admin.blogStatus;
 
 export default admineSlice.reducer;

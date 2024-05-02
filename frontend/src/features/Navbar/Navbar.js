@@ -121,7 +121,7 @@ export default function Navbar({ children }) {
       </header>
       <Disclosure
         as="nav"
-        className="bg-[#5E16EB] shadow-md sticky top-0 z-50 "
+        className="bg-[#5E16EB] shadow-md sticky top-0 z-50  "
       >
         {({ open }) => (
           <>

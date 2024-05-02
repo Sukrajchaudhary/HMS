@@ -5,8 +5,9 @@ export function getallDoctors() {
       method: "GET",
       headers: {
         "content-type": "application/json",
+        "token":localStorage.getItem("token")
       },
-      credentials:'include',
+    
     });
     if (response.ok) {
       const data = await response.json();
@@ -21,8 +22,8 @@ export function getDoctorsById(id) {
       method: "GET",
       headers: {
         "content-type": "application/json",
+        "token":localStorage.getItem("token")
       },
-      credentials:'include',
     });
     if (response.ok) {
       const data = await response.json();
